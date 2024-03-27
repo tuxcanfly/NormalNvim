@@ -98,8 +98,8 @@ maps.n["<leader>n"] = { "<cmd>enew<cr>", desc = "New file" }
 maps.n["gx"] =
 { utils.open_with_program, desc = "Open the file under cursor with a program" }
 maps.n["<C-s>"] = { "<cmd>w!<cr>", desc = "Force write" }
-maps.n["|"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
-maps.n["\\"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
+maps.n["||"] = { "<cmd>vsplit<cr>", desc = "Vertical Split" }
+maps.n["--"] = { "<cmd>split<cr>", desc = "Horizontal Split" }
 maps.i["<C-BS>"] = { "<C-W>", desc = "Enable CTRL+backsace to delete." }
 maps.n["0"] =
 { "^", desc = "Go to the fist character of the line (aliases 0 to ^)" }
@@ -647,15 +647,33 @@ if is_available "vim-fugitive" then
 end
 -- git client
 if vim.fn.executable "lazygit" == 1 then -- if lazygit exists, show it
-  maps.n["<leader>gg"] = {
-    function()
-      local git_dir = vim.fn.finddir(".git", vim.fn.getcwd() .. ";")
-      if git_dir ~= "" then
-        vim.cmd "TermExec cmd='lazygit && exit'"
-      else
-        utils.notify("Not a git repository", vim.log.levels.WARN)
-      end
+
+-- (let [Terminal (. (require :toggleterm.terminal) :Terminal)
+--       map vim.keymap.set
+--       lazygit (Terminal:new {:cmd :lazygit :hidden true})]
+--   (λ toggle-lazygit [] (set lazygit.dir (vim.fn.getcwd)) (lazygit:toggle))
+--   (map :n "|" toggle-lazygit {:silent true :noremap true :desc :lazygit}))
+
+  local Terminal = require("toggleterm.terminal").Terminal
+  local lazygit = Terminal:new {
+    cmd = "lazygit",
+    dir = "git_dir",
+    direction = "float",
+    float_opts = {
+      border = "rounded",
+    },
+    -- function to run on opening the terminal
+    on_open = function(term)
+      vim.cmd "startinsert!"
+      vim.api.nvim_buf_set_keymap(term.bufnr, "n", "q", "<cmd>close<CR>", { noremap = true, silent = true })
     end,
+    -- function to run on closing the terminal
+    on_close = function(_)
+      vim.cmd "startinsert!"
+    end,
+  }
+  maps.n["|"] = {
+    function() lazygit:toggle() end,
     desc = "ToggleTerm lazygit",
   }
 end

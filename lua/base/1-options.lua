@@ -70,7 +70,7 @@ local is_android = vim.fn.isdirectory('/data') == 1
 if is_android then vim.opt.mouse = "v" else vim.opt.mouse = "a" end -- Enable scroll for android
 
 -- Globals --------------------------------------------------------------------
-vim.g.mapleader = " " -- Set leader key.
+vim.g.mapleader = "\\" -- Set leader key.
 vim.g.maplocalleader = "," -- Set default local leader key.
 vim.g.big_file = { size = 1024 * 100, lines = 10000 } -- For files bigger than this, disable 'treesitter' (+100kb).
 
@@ -87,7 +87,3 @@ vim.g.lsp_signature_enabled = true -- Enable automatically showing lsp help as y
 vim.g.notifications_enabled = true -- Enable notifications.
 vim.g.semantic_tokens_enabled = true -- Enable lsp semantic tokens at start.
 vim.g.url_effect_enabled = true -- Highlight URLs with an underline effect.
-
-
-
-

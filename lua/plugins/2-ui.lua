@@ -406,18 +406,6 @@ return {
     cmd = "Telescope",
     opts = function()
       local get_icon = require("base.utils").get_icon
-      local actions = require("telescope.actions")
-      local mappings = {
-        i = {
-          ["<C-n>"] = actions.cycle_history_next,
-          ["<C-p>"] = actions.cycle_history_prev,
-          ["<C-j>"] = actions.move_selection_next,
-          ["<C-k>"] = actions.move_selection_previous,
-          ["<ESC>"] = actions.close,
-          ["<C-c>"] = false,
-        },
-        n = { ["q"] = actions.close },
-      }
       return {
         defaults = {
           prompt_prefix = get_icon("Selected", 1),
@@ -436,7 +424,6 @@ return {
             height = 0.80,
             preview_cutoff = 120,
           },
-          mappings = mappings,
         },
         extensions = {
           undo = {
