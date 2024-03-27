@@ -265,22 +265,16 @@ return {
           [[  \/__/    \/_/\/_/\/_/\/_/]],
         }
       else
-        dashboard.section.header.val = {
-          [[888b      88                                                           88]],
-          [[8888b     88                                                           88]],
-          [[88 `8b    88                                                           88]],
-          [[88  `8b   88   ,adPPYba,   8b,dPPYba,  88,dPYba,,adPYba,   ,adPPYYba,  88]],
-          [[88   `8b  88  a8"     "8a  88P'   "Y8  88P'   "88"    "8a  ""     `Y8  88]],
-          [[88    `8b 88  8b       d8  88          88      88      88  ,adPPPPP88  88]],
-          [[88     `8888  "8a,   ,a8"  88          88      88      88  88,    ,88  88]],
-          [[88      `888   `"YbbdP"'   88          88      88      88  `"8bbdP"Y8  88]],
-          [[                                    __                ]],
-          [[                      ___   __  __ /\_\    ___ ___    ]],
-          [[                    /' _ `\/\ \/\ \\/\ \ /' __` __`\  ]],
-          [[                    /\ \/\ \ \ \_/ |\ \ \/\ \/\ \/\ \ ]],
-          [[                    \ \_\ \_\ \___/  \ \_\ \_\ \_\ \_\]],
-          [[                     \/_/\/_/\/__/    \/_/\/_/\/_/\/_/]],
-        }
+       dashboard.section.header.val = {
+        '                                                     ',
+        '  ███╗   ██╗███████╗ ██████╗ ██╗   ██╗██╗███╗   ███╗ ',
+        '  ████╗  ██║██╔════╝██╔═══██╗██║   ██║██║████╗ ████║ ',
+        '  ██╔██╗ ██║█████╗  ██║   ██║██║   ██║██║██╔████╔██║ ',
+        '  ██║╚██╗██║██╔══╝  ██║   ██║╚██╗ ██╔╝██║██║╚██╔╝██║ ',
+        '  ██║ ╚████║███████╗╚██████╔╝ ╚████╔╝ ██║██║ ╚═╝ ██║ ',
+        '  ╚═╝  ╚═══╝╚══════╝ ╚═════╝   ╚═══╝  ╚═╝╚═╝     ╚═╝ ',
+        '                                                     ',
+      }
       end
 
       dashboard.section.header.opts.hl = "DashboardHeader"
@@ -353,6 +347,7 @@ return {
 
       return {
         timeout = 2500,
+        background_colour = "#000000",
         fps = fps,
         max_height = function() return math.floor(vim.o.lines * 0.75) end,
         max_width = function() return math.floor(vim.o.columns * 0.75) end,
@@ -560,6 +555,19 @@ return {
             height = 0.80,
             preview_cutoff = 120,
           },
+          vimgrep_arguments = {
+            "rg",
+            "--color=never",
+            "--no-heading",
+            "--with-filename",
+            "--line-number",
+            "--column",
+            "--smart-case",
+            "--trim",
+            "--iglob",
+            "!.git",
+            "--hidden",
+          },
         },
         extensions = {
           undo = {
@@ -624,22 +632,8 @@ return {
     "folke/noice.nvim",
     event = "User BaseDefered",
     opts = function()
-      local enable_conceal = false          -- Hide command text if true
       return {
         presets = { bottom_search = true }, -- The kind of popup used for /
-        cmdline = {
-          view = "cmdline",                 -- The kind of popup used for :
-          format = {
-            cmdline = { conceal = enable_conceal },
-            search_down = { conceal = enable_conceal },
-            search_up = { conceal = enable_conceal },
-            filter = { conceal = enable_conceal },
-            lua = { conceal = enable_conceal },
-            help = { conceal = enable_conceal },
-            input = { conceal = enable_conceal },
-          }
-        },
-
         -- Disable every other noice feature
         messages = { enabled = false },
         lsp = {

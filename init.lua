@@ -25,6 +25,7 @@ vim.keymap.set("n", ";", ":Telescope<cr>")
 vim.keymap.set("n", "'", ":Telescope commands<cr>")
 vim.keymap.set("n", "//", ":Telescope live_grep<cr>")
 vim.keymap.set("n", ",", ":Telescope git_files<cr>")
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
 
 -- ONCE ALL SOURCE FILES HAVE LOADED:
 -- Load the color scheme defined in ./lua/1-options.lua
