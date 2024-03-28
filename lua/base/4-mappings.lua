@@ -252,14 +252,14 @@ maps.x["G"] = {
   end,
   desc = "G and go to the last position (visual)",
 }
-maps.n["<C-a>"] = { -- to move to the previous position press ctrl + oo
-  function()
-    vim.g.minianimate_disable = true
-    vim.cmd "normal! gg0vG$"
-    vim.g.minianimate_disable = false
-  end,
-  desc = "Visually select all",
-}
+-- maps.n["<C-a>"] = { -- to move to the previous position press ctrl + oo
+--   function()
+--     vim.g.minianimate_disable = true
+--     vim.cmd "normal! gg0vG$"
+--     vim.g.minianimate_disable = false
+--   end,
+--   desc = "Visually select all",
+-- }
 
 -- packages -----------------------------------------------------------------
 -- lazy
@@ -1413,10 +1413,11 @@ function M.lsp_mappings(client, bufnr)
             utils.del_autocmds_from_buffer("lsp_auto_format", bufnr)
             return
           end
-          local autoformat_enabled = vim.b.autoformat_enabled
+          local autoformat_enabled = vim.g.autoformat_enabled
           if autoformat_enabled == nil then autoformat_enabled = vim.g.autoformat_enabled end
           if autoformat_enabled and ((not autoformat.filter) or autoformat.filter(bufnr)) then
-            vim.lsp.buf.format(vim.tbl_deep_extend("force", M.format_opts, { bufnr = bufnr }))
+            -- vim.lsp.buf.format(vim.tbl_deep_extend("force", M.format_opts, { bufnr = bufnr }))
+            vim.lsp.buf.format(M.format_opts)
           end
         end,
       })
