@@ -18,6 +18,7 @@
 --       -> shifted movement keys
 --       -> cmdline autocompletion
 --       -> special cases
+--       -> custom bindings
 
 --       ## Plugin bindings
 --       -> alpha-nvim
@@ -550,12 +551,7 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
   end,
 })
 
--- -------------------------------------------------------------------------
---
--- ## Custom bindings
---
--- -------------------------------------------------------------------------
-
+-- custom bindings ------------------------------------------------------------
 vim.keymap.set("n", "<C-q>", ":qa<cr>")
 vim.keymap.set("n", ";", ":Telescope<cr>")
 vim.keymap.set("n", "'", ":Telescope commands<cr>")
