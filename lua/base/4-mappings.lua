@@ -552,6 +552,20 @@ vim.api.nvim_create_autocmd("CmdwinEnter", {
 
 -- -------------------------------------------------------------------------
 --
+-- ## Custom bindings
+--
+-- -------------------------------------------------------------------------
+
+vim.keymap.set("n", "<C-q>", ":qa<cr>")
+vim.keymap.set("n", ";", ":Telescope<cr>")
+vim.keymap.set("n", "'", ":Telescope commands<cr>")
+vim.keymap.set("n", "//", ":Telescope live_grep<cr>")
+vim.keymap.set("n", ",", ":Telescope git_files<cr>")
+vim.keymap.set("n", "K", vim.lsp.buf.hover)
+
+
+-- -------------------------------------------------------------------------
+--
 -- ## Plugin bindings
 --
 -- -------------------------------------------------------------------------

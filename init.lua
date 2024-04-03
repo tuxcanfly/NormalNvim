@@ -19,14 +19,6 @@ for _, source in ipairs {
   if not status_ok then vim.api.nvim_err_writeln("Failed to load " .. source .. "\n\n" .. fault) end
 end
 
--- custom maps
-vim.keymap.set("n", "<C-q>", ":qa<cr>")
-vim.keymap.set("n", ";", ":Telescope<cr>")
-vim.keymap.set("n", "'", ":Telescope commands<cr>")
-vim.keymap.set("n", "//", ":Telescope live_grep<cr>")
-vim.keymap.set("n", ",", ":Telescope git_files<cr>")
-vim.keymap.set("n", "K", vim.lsp.buf.hover)
-
 -- ONCE ALL SOURCE FILES HAVE LOADED:
 -- Load the color scheme defined in ./lua/1-options.lua
 if base.default_colorscheme then
