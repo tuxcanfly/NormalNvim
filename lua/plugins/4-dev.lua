@@ -146,6 +146,7 @@ return {
   {
     "tpope/vim-fugitive",
     enabled = vim.fn.executable "git" == 1,
+    event = "User BaseGitFile",
     dependencies = { "tpope/vim-rhubarb" },
     cmd = {
       "Gvdiffsplit",
@@ -582,8 +583,8 @@ return {
           type = 'kotlin',
           request = 'launch',
           name = 'Launch kotlin program',
-          projectRoot = "${workspaceFolder}/app",     -- ensure this is correct
-          mainClass = "AppKt",                        -- ensure this is correct
+          projectRoot = "${workspaceFolder}/app", -- ensure this is correct
+          mainClass = "AppKt",                    -- ensure this is correct
         },
       }
 
